@@ -53,11 +53,11 @@ export const DiscountBanner = () => {
                     placeholder="Tu email aquí..."
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-72 text-slate-800 bg-white/95 border-white/50 placeholder:text-slate-500"
+                    className="w-72 text-slate-800 bg-orange-50 border-orange-200 placeholder:text-orange-400 focus:border-orange-400 focus:ring-orange-400"
                   />
                   <Button
                     onClick={handleSubscribe}
-                    className="bg-white text-slate-800 hover:bg-slate-100 font-semibold px-6"
+                    className="bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:from-orange-600 hover:to-amber-600 font-semibold px-6 shadow-lg hover:shadow-xl transition-all duration-300"
                     size="default"
                   >
                     Obtener Código
@@ -65,12 +65,12 @@ export const DiscountBanner = () => {
                 </div>
               ) : (
                 <div className="flex items-center gap-3">
-                  <Badge className="text-lg font-bold px-4 py-2 bg-white text-slate-800 hover:bg-slate-100">
+                  <Badge className="text-lg font-bold px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:from-orange-600 hover:to-amber-600 shadow-lg">
                     PRIMERA15
                   </Badge>
                   <Button
                     onClick={copyCode}
-                    className="bg-white/20 hover:bg-white/30 border border-white/30 font-semibold"
+                    className="bg-orange-500/20 hover:bg-orange-500/30 border border-orange-300 font-semibold text-orange-100 hover:text-white transition-colors"
                     size="sm"
                   >
                     {copied ? <Check className="h-4 w-4 mr-1" /> : <Copy className="h-4 w-4 mr-1" />}
