@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star, ShoppingCart, Heart } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -29,6 +29,20 @@ interface ProductCarouselProps {
 }
 
 export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
+  const [favorites, setFavorites] = useState<Set<number>>(new Set());
+
+  const toggleFavorite = (productId: number) => {
+    setFavorites(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(productId)) {
+        newSet.delete(productId);
+      } else {
+        newSet.add(productId);
+      }
+      return newSet;
+    });
+  };
+
   const products: Product[] = [
     {
       id: 1,
@@ -86,32 +100,45 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
   ];
 
   return (
-    <Carousel className="w-full max-w-6xl mx-auto">
-      <CarouselContent>
+    <Carousel className="w-full max-w-7xl mx-auto">
+      <CarouselContent className="-ml-2 md:-ml-4">
         {products.map((product) => (
-          <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
-            <Card className="h-full hover:shadow-lg transition-shadow">
+          <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+            <Card className="h-full hover:shadow-2xl transition-all duration-300 group border-0 bg-gradient-to-br from-white to-gray-50">
               <CardContent className="p-0">
-                <div className="relative">
+                <div className="relative overflow-hidden rounded-t-2xl">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-48 object-cover rounded-t-lg"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  
                   {product.badge && (
-                    <Badge className="absolute top-2 left-2 bg-red-500">
+                    <Badge className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white border-0 font-semibold">
                       {product.badge}
                     </Badge>
                   )}
-                  <Badge className="absolute top-2 right-2 bg-green-500">
+                  <Badge className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 font-bold">
                     -{product.discount}%
                   </Badge>
+                  
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-gray-700 rounded-full"
+                    onClick={() => toggleFavorite(product.id)}
+                  >
+                    <Heart className={`h-5 w-5 ${favorites.has(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                  </Button>
                 </div>
-                <div className="p-4">
-                  <h4 className="font-semibold text-lg mb-2 line-clamp-2">
+                
+                <div className="p-6">
+                  <h4 className="font-bold text-lg mb-3 text-gray-900 line-clamp-2 leading-tight">
                     {product.name}
                   </h4>
-                  <div className="flex items-center mb-2">
+                  
+                  <div className="flex items-center mb-4">
                     <div className="flex items-center">
                       {[...Array(5)].map((_, i) => (
                         <Star
@@ -124,25 +151,33 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
                         />
                       ))}
                     </div>
-                    <span className="text-sm text-gray-600 ml-2">
-                      {product.rating} ({product.reviews})
+                    <span className="text-sm text-gray-600 ml-2 font-medium">
+                      {product.rating} ({product.reviews.toLocaleString()})
                     </span>
                   </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-2xl font-bold text-green-600">
+                  
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-bold text-emerald-600">
                         ${product.price}
                       </span>
-                      <span className="text-sm text-gray-500 line-through ml-2">
+                      <span className="text-sm text-gray-500 line-through">
                         ${product.originalPrice}
                       </span>
                     </div>
+                    <div className="text-right">
+                      <div className="text-xs text-gray-600 font-medium">Ahorras</div>
+                      <div className="text-lg font-bold text-red-500">
+                        ${product.originalPrice - product.price}
+                      </div>
+                    </div>
                   </div>
+                  
                   <Button
                     onClick={onAddToCart}
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl"
                   >
-                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    <ShoppingCart className="h-5 w-5 mr-2" />
                     Añadir al Carrito
                   </Button>
                 </div>
@@ -151,8 +186,8 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="hidden md:flex -left-12 bg-white hover:bg-gray-50 border-2 border-gray-200" />
+      <CarouselNext className="hidden md:flex -right-12 bg-white hover:bg-gray-50 border-2 border-gray-200" />
     </Carousel>
   );
 };

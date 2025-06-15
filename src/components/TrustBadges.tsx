@@ -6,43 +6,54 @@ export const TrustBadges = () => {
     {
       icon: Shield,
       title: "Compra Segura",
-      description: "SSL 256-bit"
+      description: "SSL 256-bit",
+      color: "text-emerald-600"
     },
     {
       icon: Truck,
       title: "Envío Gratis",
-      description: "Pedidos +$50"
+      description: "Pedidos +$50",
+      color: "text-blue-600"
     },
     {
       icon: HeartHandshake,
       title: "Garantía",
-      description: "2 años oficiales"
+      description: "2 años oficiales",
+      color: "text-purple-600"
     },
     {
       icon: CreditCard,
       title: "Pagos Seguros",
-      description: "Múltiples métodos"
+      description: "Múltiples métodos",
+      color: "text-orange-600"
     },
     {
       icon: Award,
       title: "Calidad Premium",
-      description: "Productos originales"
+      description: "Productos originales",
+      color: "text-yellow-600"
     },
     {
       icon: Lock,
       title: "Datos Protegidos",
-      description: "Privacidad total"
+      description: "Privacidad total",
+      color: "text-red-600"
     }
   ];
 
   return (
-    <section className="py-8 bg-white border-b">
+    <section className="py-16 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {badges.map((badge, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-4">
-              <badge.icon className="h-8 w-8 text-blue-600 mb-2" />
-              <h4 className="font-semibold text-sm">{badge.title}</h4>
+            <div 
+              key={index} 
+              className="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+            >
+              <div className={`p-3 rounded-xl bg-white shadow-md mb-4 group-hover:shadow-lg transition-shadow`}>
+                <badge.icon className={`h-7 w-7 ${badge.color}`} />
+              </div>
+              <h4 className="font-bold text-sm text-gray-900 mb-1">{badge.title}</h4>
               <p className="text-xs text-gray-600">{badge.description}</p>
             </div>
           ))}

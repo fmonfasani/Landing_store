@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { X, Gift, Copy, Check } from "lucide-react";
+import { X, Gift, Copy, Check, Sparkles } from "lucide-react";
 
 export const DiscountBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -26,55 +26,66 @@ export const DiscountBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white py-3 relative">
-      <div className="container mx-auto px-4">
+    <div className="bg-gradient-to-r from-emerald-500 via-blue-600 to-purple-600 text-white py-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-black/10"></div>
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-yellow-400/10 rounded-full blur-2xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 flex-1">
-            <Gift className="h-5 w-5" />
-            <span className="font-semibold">
-              🎉 ¡Descuento del 15% en tu primera compra!
-            </span>
+          <div className="flex items-center gap-6 flex-1">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-white/20 rounded-full">
+                <Gift className="h-6 w-6" />
+              </div>
+              <Sparkles className="h-5 w-5 text-yellow-300" />
+            </div>
             
-            {!showCode ? (
-              <div className="flex items-center gap-2">
-                <Input
-                  type="email"
-                  placeholder="Tu email aquí..."
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-64 text-black"
-                />
-                <Button
-                  onClick={handleSubscribe}
-                  variant="secondary"
-                  size="sm"
-                >
-                  Obtener Código
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
-                  PRIMERA15
-                </Badge>
-                <Button
-                  onClick={copyCode}
-                  variant="secondary"
-                  size="sm"
-                  className="flex items-center gap-1"
-                >
-                  {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  {copied ? "¡Copiado!" : "Copiar"}
-                </Button>
-              </div>
-            )}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-1">
+              <span className="font-bold text-lg">
+                🎉 ¡Descuento del 15% en tu primera compra!
+              </span>
+              
+              {!showCode ? (
+                <div className="flex items-center gap-3">
+                  <Input
+                    type="email"
+                    placeholder="Tu email aquí..."
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-72 text-gray-900 bg-white/95 border-white/50 placeholder:text-gray-500"
+                  />
+                  <Button
+                    onClick={handleSubscribe}
+                    className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-6"
+                    size="default"
+                  >
+                    Obtener Código
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <Badge className="text-lg font-bold px-4 py-2 bg-white text-gray-900 hover:bg-gray-100">
+                    PRIMERA15
+                  </Badge>
+                  <Button
+                    onClick={copyCode}
+                    className="bg-white/20 hover:bg-white/30 border border-white/30 font-semibold"
+                    size="sm"
+                  >
+                    {copied ? <Check className="h-4 w-4 mr-1" /> : <Copy className="h-4 w-4 mr-1" />}
+                    {copied ? "¡Copiado!" : "Copiar"}
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
           
           <Button
             onClick={() => setIsVisible(false)}
             variant="ghost"
             size="sm"
-            className="text-white hover:bg-white/20"
+            className="text-white hover:bg-white/20 ml-4"
           >
             <X className="h-4 w-4" />
           </Button>
