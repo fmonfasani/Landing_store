@@ -104,7 +104,7 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
       <CarouselContent className="-ml-2 md:-ml-4">
         {products.map((product) => (
           <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-            <Card className="h-full hover:shadow-2xl transition-all duration-300 group border-0 bg-gradient-to-br from-white to-gray-50">
+            <Card className="h-full hover:shadow-2xl transition-all duration-300 group border-0 bg-gradient-to-br from-white to-cyan-50">
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-2xl">
                   <img
@@ -115,26 +115,26 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   
                   {product.badge && (
-                    <Badge className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white border-0 font-semibold">
+                    <Badge className="absolute top-4 left-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white border-0 font-semibold">
                       {product.badge}
                     </Badge>
                   )}
-                  <Badge className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 font-bold">
+                  <Badge className="absolute top-4 right-4 bg-gradient-to-r from-cyan-600 to-teal-600 text-white border-0 font-bold">
                     -{product.discount}%
                   </Badge>
                   
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-gray-700 rounded-full"
+                    className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-slate-700 rounded-full"
                     onClick={() => toggleFavorite(product.id)}
                   >
-                    <Heart className={`h-5 w-5 ${favorites.has(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                    <Heart className={`h-5 w-5 ${favorites.has(product.id) ? 'fill-teal-500 text-teal-500' : ''}`} />
                   </Button>
                 </div>
                 
                 <div className="p-6">
-                  <h4 className="font-bold text-lg mb-3 text-gray-900 line-clamp-2 leading-tight">
+                  <h4 className="font-bold text-lg mb-3 text-slate-800 line-clamp-2 leading-tight">
                     {product.name}
                   </h4>
                   
@@ -146,28 +146,28 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
                           className={`h-4 w-4 ${
                             i < Math.floor(product.rating)
                               ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
+                              : "text-slate-300"
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="text-sm text-gray-600 ml-2 font-medium">
+                    <span className="text-sm text-slate-600 ml-2 font-medium">
                       {product.rating} ({product.reviews.toLocaleString()})
                     </span>
                   </div>
                   
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex flex-col">
-                      <span className="text-3xl font-bold text-emerald-600">
+                      <span className="text-3xl font-bold text-teal-600">
                         ${product.price}
                       </span>
-                      <span className="text-sm text-gray-500 line-through">
+                      <span className="text-sm text-slate-500 line-through">
                         ${product.originalPrice}
                       </span>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-gray-600 font-medium">Ahorras</div>
-                      <div className="text-lg font-bold text-red-500">
+                      <div className="text-xs text-slate-600 font-medium">Ahorras</div>
+                      <div className="text-lg font-bold text-cyan-600">
                         ${product.originalPrice - product.price}
                       </div>
                     </div>
@@ -175,7 +175,7 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
                   
                   <Button
                     onClick={onAddToCart}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl"
+                    className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold py-3 rounded-xl"
                   >
                     <ShoppingCart className="h-5 w-5 mr-2" />
                     Añadir al Carrito
@@ -186,8 +186,8 @@ export const ProductCarousel = ({ onAddToCart }: ProductCarouselProps) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden md:flex -left-12 bg-white hover:bg-gray-50 border-2 border-gray-200" />
-      <CarouselNext className="hidden md:flex -right-12 bg-white hover:bg-gray-50 border-2 border-gray-200" />
+      <CarouselPrevious className="hidden md:flex -left-12 bg-white hover:bg-cyan-50 border-2 border-slate-200" />
+      <CarouselNext className="hidden md:flex -right-12 bg-white hover:bg-cyan-50 border-2 border-slate-200" />
     </Carousel>
   );
 };

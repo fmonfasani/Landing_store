@@ -55,19 +55,19 @@ export const CountdownTimer = () => {
       {/* Countdown Display */}
       <div className="text-center mb-8">
         <div className="flex justify-center items-center gap-2 mb-6">
-          <Clock className="h-6 w-6 text-red-500" />
-          <span className="text-lg font-semibold">Tiempo restante:</span>
+          <Clock className="h-6 w-6 text-cyan-600" />
+          <span className="text-lg font-semibold text-slate-800">Tiempo restante:</span>
         </div>
         <div className="flex justify-center gap-4">
-          <div className="bg-red-500 text-white p-4 rounded-lg min-w-16 text-center">
+          <div className="bg-gradient-to-r from-cyan-600 to-teal-600 text-white p-4 rounded-lg min-w-16 text-center">
             <div className="text-2xl font-bold">{timeLeft.hours.toString().padStart(2, '0')}</div>
             <div className="text-sm">Horas</div>
           </div>
-          <div className="bg-red-500 text-white p-4 rounded-lg min-w-16 text-center">
+          <div className="bg-gradient-to-r from-cyan-600 to-teal-600 text-white p-4 rounded-lg min-w-16 text-center">
             <div className="text-2xl font-bold">{timeLeft.minutes.toString().padStart(2, '0')}</div>
             <div className="text-sm">Minutos</div>
           </div>
-          <div className="bg-red-500 text-white p-4 rounded-lg min-w-16 text-center">
+          <div className="bg-gradient-to-r from-cyan-600 to-teal-600 text-white p-4 rounded-lg min-w-16 text-center">
             <div className="text-2xl font-bold">{timeLeft.seconds.toString().padStart(2, '0')}</div>
             <div className="text-sm">Segundos</div>
           </div>
@@ -77,7 +77,7 @@ export const CountdownTimer = () => {
       {/* Limited Offers */}
       <div className="grid md:grid-cols-2 gap-6">
         {offers.map((offer) => (
-          <Card key={offer.id} className="overflow-hidden border-2 border-red-200">
+          <Card key={offer.id} className="overflow-hidden border-2 border-cyan-200">
             <CardContent className="p-0">
               <div className="relative">
                 <img
@@ -85,32 +85,32 @@ export const CountdownTimer = () => {
                   alt={offer.name}
                   className="w-full h-48 object-cover"
                 />
-                <Badge className="absolute top-2 left-2 bg-red-500 text-white">
+                <Badge className="absolute top-2 left-2 bg-gradient-to-r from-cyan-600 to-teal-600 text-white">
                   -{offer.discount}% OFF
                 </Badge>
-                <Badge className="absolute top-2 right-2 bg-orange-500">
+                <Badge className="absolute top-2 right-2 bg-slate-600">
                   Solo {offer.stock} disponibles
                 </Badge>
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold mb-2">{offer.name}</h4>
+                <h4 className="text-xl font-bold mb-2 text-slate-800">{offer.name}</h4>
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <span className="text-3xl font-bold text-green-600">
+                    <span className="text-3xl font-bold text-teal-600">
                       ${offer.price}
                     </span>
-                    <span className="text-lg text-gray-500 line-through ml-2">
+                    <span className="text-lg text-slate-500 line-through ml-2">
                       ${offer.originalPrice}
                     </span>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-gray-600">Ahorras</div>
-                    <div className="text-lg font-bold text-red-500">
+                    <div className="text-sm text-slate-600">Ahorras</div>
+                    <div className="text-lg font-bold text-cyan-600">
                       ${offer.originalPrice - offer.price}
                     </div>
                   </div>
                 </div>
-                <Button className="w-full bg-red-500 hover:bg-red-600 text-lg py-3">
+                <Button className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-lg py-3">
                   <ShoppingCart className="h-5 w-5 mr-2" />
                   ¡Comprar Ahora!
                 </Button>

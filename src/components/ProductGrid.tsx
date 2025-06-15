@@ -91,7 +91,7 @@ export const ProductGrid = ({ onAddToCart }: ProductGridProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {products.map((product) => (
-        <Card key={product.id} className="group hover:shadow-xl transition-all duration-300">
+        <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-slate-200">
           <CardContent className="p-0">
             <div className="relative overflow-hidden">
               <img
@@ -100,11 +100,11 @@ export const ProductGrid = ({ onAddToCart }: ProductGridProps) => {
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
               {product.discount && (
-                <Badge className="absolute top-2 left-2 bg-red-500">
+                <Badge className="absolute top-2 left-2 bg-cyan-600">
                   -{product.discount}%
                 </Badge>
               )}
-              <Badge className="absolute top-2 right-2 bg-blue-500">
+              <Badge className="absolute top-2 right-2 bg-teal-600">
                 {product.category}
               </Badge>
               
@@ -118,7 +118,7 @@ export const ProductGrid = ({ onAddToCart }: ProductGridProps) => {
             </div>
             
             <div className="p-4">
-              <h4 className="font-semibold text-lg mb-2 line-clamp-2">
+              <h4 className="font-semibold text-lg mb-2 line-clamp-2 text-slate-800">
                 {product.name}
               </h4>
               
@@ -130,31 +130,31 @@ export const ProductGrid = ({ onAddToCart }: ProductGridProps) => {
                       className={`h-4 w-4 ${
                         i < Math.floor(product.rating)
                           ? "text-yellow-400 fill-current"
-                          : "text-gray-300"
+                          : "text-slate-300"
                       }`}
                     />
                   ))}
                 </div>
-                <span className="text-sm text-gray-600 ml-2">
+                <span className="text-sm text-slate-600 ml-2">
                   {product.rating} ({product.reviews})
                 </span>
               </div>
               
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <span className="text-xl font-bold text-green-600">
+                  <span className="text-xl font-bold text-teal-600">
                     ${product.price}
                   </span>
                   {product.originalPrice && (
-                    <span className="text-sm text-gray-500 line-through ml-2">
+                    <span className="text-sm text-slate-500 line-through ml-2">
                       ${product.originalPrice}
                     </span>
                   )}
                 </div>
                 {product.originalPrice && (
                   <div className="text-right">
-                    <div className="text-xs text-gray-600">Ahorras</div>
-                    <div className="text-sm font-bold text-red-500">
+                    <div className="text-xs text-slate-600">Ahorras</div>
+                    <div className="text-sm font-bold text-cyan-600">
                       ${product.originalPrice - product.price}
                     </div>
                   </div>
@@ -163,14 +163,14 @@ export const ProductGrid = ({ onAddToCart }: ProductGridProps) => {
               
               <Button
                 onClick={onAddToCart}
-                className="w-full bg-blue-600 hover:bg-blue-700"
+                className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700"
               >
                 <ShoppingCart className="h-4 w-4 mr-2" />
                 Añadir al Carrito
               </Button>
               
               {/* Cross-selling suggestion */}
-              <p className="text-xs text-gray-500 mt-2 text-center">
+              <p className="text-xs text-slate-500 mt-2 text-center">
                 💡 Combínalo con otros productos y ahorra más
               </p>
             </div>
